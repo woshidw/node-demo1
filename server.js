@@ -23,18 +23,32 @@ var server = http.createServer(function(request, response){
 /*每次请求都会执行 */
   if(path === '/'){
     response.statusCode = 200
+    /*成功返回状态码200*/
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    response.write(`这里就可以发送图片，文字，html什么的了，
-    可以链接/x来请求/x的内容`)
-    /* 注意：``和‘’是不同的，``里可以加回车 ，‘’里回车用\n表示*/
+    /*响应的描述信息，text/html我是文本，语法是heml*/
+    response.write(`
+    <!DOCTYPE html>
+    <head>
+    <link rel="stylesheet" href="/x">
+    </head>
+    <body>
+    <h1>如果路径是/，就发送这段内容，格式为html</h1>
+    <h2>我请求了路径为/x的css
+    </body>
+    `)
+        /*浏览器请求了localhost根目录后，发现根目录要请求一个/x的css，
+    于是再次发送请求请求/x，这就是html和css通过http传送到浏览器的整个过程，
+    一个路径返回html字符串，一个路径返回css字符串*/
+    /* 注意：``和''是不同的，``里可以加回车 ，''里回车用\n表示*/
     response.end()
   } else if(path === '/x'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/css;charset=utf-8')
-    response.write(`这里就是一个响应要执行的，css什么的`)
+    response.write(`h2{color: green;}`)
     response.end()
   } else {
     response.statusCode = 404
+    /*访问的路径不存在返回状态码为404*/
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write(`你访问的页面不存在`)
     response.end()
