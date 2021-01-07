@@ -22,15 +22,18 @@ var server = http.createServer(function(request, response){
   console.log('有个傻子发请求过来啦！路径（带查询参数）为：' + pathWithQuery)
 /*每次请求都会执行 */
   if(path === '/'){
-    response.statusCode = 200
+    response.statusCode = 200;
     /*成功返回状态码200*/
-    response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    /*响应的描述信息，text/html我是文本，语法是heml*/
+    response.setHeader('Content-Type', 'text/html;charset=utf-8');
+    /*响应的描述信息，text/html我是文本，语法是html*/
+    response.setHeader('dw', 'sb');
     response.write(`
     <!DOCTYPE html>
     <head>
     <link rel="stylesheet" href="/x">
     </head>
+    `)
+    response.write(`
     <body>
     <h1>如果路径是/，就发送这段内容，格式为html</h1>
     <h2>我请求了路径为/x的css
