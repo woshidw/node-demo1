@@ -24,85 +24,14 @@ var server = http.createServer(function(request, response){
   if(path === '/'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    response.write(`
- <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>node.js server</title>
-  <link rel="stylesheet" href="/x">
-</head>
-<body>
-<h1>跳动的心请求/x<h1>
-  <div id="heart">
-    <div class="left"></div>
-    <div class="right"></div>
-    <div class="bottom"></div>
-  </div>
-  </br>
-</body>
-</html>  
-    `)
-    /* ``和‘’是不同的，``里可以加回车 ，‘’里回车用\n表示*/
+    response.write(`这里就可以发送图片，文字，html什么的了，
+    可以链接/x来请求/x的内容`)
+    /* 注意：``和‘’是不同的，``里可以加回车 ，‘’里回车用\n表示*/
     response.end()
   } else if(path === '/x'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/css;charset=utf-8')
-    response.write(`
-    
-    *{box-sizing: border-box;}
-
-h1{
-  color: red;
-}
-
-#heart{
-  display: inline-block;
-  margin: 100px;
-  position: relative;
-  animation: .5s heart infinite alternate-reverse;
-  
-}
-@keyframes heart {
-  0%{
-    transform: scale(1);
-  }
-  100%{
-    transform: scale(1.2);
-  }
-}
-
-#heart>.left{
-  background: red;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  transform: rotate(45deg) translateX(40px);
-  bottom: 50px;
-  left: -50px;
-  border-radius: 50% 0 0 50%;
-}
-#heart>.right{
-  background: red;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  transform: rotate(45deg) translateY(40px);
-  bottom: 50px;
-  right: -50px;
-  border-radius: 50% 50% 0 0;
-}
-#heart>.bottom{
-  background: red;
-  width: 50px;
-  height: 50px;
-  transform: rotate(45deg);
-}
-
-
-    
-    `)
+    response.write(`这里就是一个响应要执行的，css什么的`)
     response.end()
   } else {
     response.statusCode = 404
